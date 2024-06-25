@@ -1,0 +1,29 @@
+@import './variables';
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: $background-color;
+    font-family: $font-family;
+}
+
+.container {
+    background: #fff;
+    padding: $padding-medium;
+    border-radius: $border-radius-medium;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+    h1 {
+        color: $primary-color;
+        margin-bottom: $padding-medium;
+    }
+    .search-input {
+        width: 100%;
+        padding: $padding-small;
+        margin-bottom: $padding-medium;
+        border: 1px solid $border-color;
+        border-radius: $border-radius-small;
+    }
+}

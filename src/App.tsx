@@ -1,35 +1,78 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useReducer, useCallback, useEffect, useState } from 'react';
+import BookForm from './components/BookForms';
+import BookList from './components/BookList';
+import Pagination from './components/Pigination ';
+import { useLocalStorage } from './hooks/UseLocalStorage';
+import bookReducer from './reducers/BookReducer';
+import { Book } from './types';
+import './styles/App.scss';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+  const [books, dispatch] = useReducer(bookReducer, []);
+  const [storedBooks, setStoredBooks] = useLocalStorage('books', []);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const booksPerPage = 5;
+  const totalPages = Math.ceil(books.length / booksPerPage);
+
+  useEffect(() => {
+    if (storedBooks.length > 0) {
+      dispatch({ type: 'INITIAL_LOAD', books: storedBooks });
+    }
+  }, [storedBooks]);
+
+  useEffect(() => {
+    setStoredBooks(books);
+  }, [books, setStoredBooks]);
+
+  const addBook = (book: { title: string; author: string; year: number }) => {
+    const newBook = { ...book, id: Date.now() };
+    dispatch({ type: 'ADD_BOOK', book: newBook });
+  };
+
+  const editBook = (updatedBook: Book) => {
+    dispatch({ type: 'UPDATE_BOOK', book: updatedBook });
+  };
+
+  const deleteBook = (id: number) => {
+    dispatch({ type: 'DELETE_BOOK', id });
+  };
+
+  const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  }, []);
+
+  const filteredBooks = books.filter(book =>
+    book.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const paginatedBooks = filteredBooks.slice(
+    (currentPage - 1) * booksPerPage,
+    currentPage * booksPerPage
+  );
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <div className="container">
+        <h1>Book Repository</h1>
+        <BookForm onAddBook={addBook} />
+        <input
+          type="text"
+          placeholder="Search by title"
+          value={searchTerm}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        <BookList books={paginatedBooks} onEditBook={editBook} onDeleteBook={deleteBook} />
+        <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    </div>
+  );
+};
 
-export default App
+export default App;
