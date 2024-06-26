@@ -1,13 +1,6 @@
 import React from 'react';
-// import './BookList.scss';
 import '../styles/components/BookList.scss';
-
-interface Book {
-  id: number;
-  title: string;
-  author: string;
-  year: number;
-}
+import { Book } from '../types';
 
 interface BookListProps {
   books: Book[];
