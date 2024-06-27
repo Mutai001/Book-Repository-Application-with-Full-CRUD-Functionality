@@ -1,135 +1,126 @@
-@import './variables';
-.app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    max-width: 600px;
-    background: $background-color;
-    font-family: $font-family;
-}
-
-.container {
-    background: #fff;
-    padding: $padding-medium;
-    border-radius: $border-radius-medium;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    max-width: 600px;
-    width: 100%;
-    h1 {
-        color: $primary-color;
-        margin-bottom: $padding-medium;
-    }
-    .search-input {
-        width: 100%;
-        padding: $padding-small;
-        margin-bottom: $padding-medium;
-        border: 1px solid $border-color;
-        border-radius: $border-radius-small;
-    }
-}
-
-// Header styles
-.header {
-    background-color: $primary-color;
-    color: #fff;
-    padding: $padding-medium;
-    text-align: center;
-    border-radius: $border-radius-medium;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    h1 {
-        margin: 0;
-        font-family: $font-family;
-    }
-}
-
-// BookForm styles
-.book-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: $padding-medium;
-    input {
-        width: 80%;
-        padding: $padding-small;
-        margin-bottom: $margin-small;
-        border: 1px solid $border-color;
-        border-radius: $border-radius-small;
-    }
-    button {
-        background-color: $primary-color;
-        color: #fff;
-        padding: $padding-small;
-        border: none;
-        border-radius: $border-radius-small;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: darken($primary-color, 10%);
-        }
-    }
-}
-
-// BookList styles
-.book-list {
-    width: 100%;
-    margin-bottom: $padding-medium;
-    border-collapse: collapse;
-    th,
-    td {
-        padding: $padding-small;
-        border: 1px solid $border-color;
-        text-align: left;
-    }
-    th {
-        background-color: lighten($primary-color, 20%);
-        color: #fff;
-    }
-    td {
-        background-color: #fff;
-    }
-    button {
-        background-color: $secondary-color;
-        color: #fff;
-        padding: $padding-small;
-        border: none;
-        border-radius: $border-radius-small;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: darken($secondary-color, 10%);
-        }
-        &:first-child {
-            margin-right: $margin-small;
-        }
-    }
-}
-
-// Pagination styles
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    button {
-        background-color: $primary-color;
-        color: #fff;
-        padding: $padding-small;
-        border: none;
-        border-radius: $border-radius-small;
-        margin: 0 $margin-small;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        &:hover {
-            background-color: darken($primary-color, 10%);
-        }
-        &:disabled {
-            background-color: $border-color;
-            cursor: not-allowed;
-        }
-    }
-    span {
-        font-family: $font-family;
-        color: $text-color;
-    }
-}
+// @import './variables';
+// .app {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     max-width: 600px;
+//     background: $background-color;
+//     font-family: $font-family;
+// }
+// .container {
+//     background: #fff;
+//     padding: $padding-medium;
+//     border-radius: $border-radius-medium;
+//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+//     text-align: center;
+//     max-width: 600px;
+//     width: 100%;
+// }
+// .container h1 {
+//     color: $primary-color;
+//     margin-bottom: $padding-medium;
+// }
+// .container .search-input {
+//     width: 100%;
+//     padding: $padding-small;
+//     margin-bottom: $padding-medium;
+//     border: 1px solid $border-color;
+//     border-radius: $border-radius-small;
+// }
+// .header {
+//     background-color: $primary-color;
+//     color: #fff;
+//     padding: $padding-medium;
+//     text-align: center;
+//     border-radius: $border-radius-medium;
+//     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+// }
+// .header h1 {
+//     margin: 0;
+//     font-family: $font-family;
+// }
+// .book-form {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     margin-bottom: $padding-medium;
+// }
+// .book-form input {
+//     width: 80%;
+//     padding: $padding-small;
+//     margin-bottom: $margin-small;
+//     border: 1px solid $border-color;
+//     border-radius: $border-radius-small;
+// }
+// .book-form button {
+//     background-color: $primary-color;
+//     color: #fff;
+//     padding: $padding-small;
+//     border: none;
+//     border-radius: $border-radius-small;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+// }
+// .book-form button:hover {
+//     background-color: darken($primary-color, 10%);
+// }
+// .book-list {
+//     width: 100%;
+//     margin-bottom: $padding-medium;
+//     border-collapse: collapse;
+// }
+// .book-list th,
+// .book-list td {
+//     padding: $padding-small;
+//     border: 1px solid $border-color;
+//     text-align: left;
+// }
+// .book-list th {
+//     background-color: lighten($primary-color, 20%);
+//     color: #fff;
+// }
+// .book-list td {
+//     background-color: #fff;
+// }
+// .book-list button {
+//     background-color: $secondary-color;
+//     color: #fff;
+//     padding: $padding-small;
+//     border: none;
+//     border-radius: $border-radius-small;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+// }
+// .book-list button:hover {
+//     background-color: darken($secondary-color, 10%);
+// }
+// .book-list button:first-child {
+//     margin-right: $margin-small;
+// }
+// .pagination {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+// .pagination button {
+//     background-color: $primary-color;
+//     color: #fff;
+//     padding: $padding-small;
+//     border: none;
+//     border-radius: $border-radius-small;
+//     margin: 0 $margin-small;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+// }
+// .pagination button:hover {
+//     background-color: darken($primary-color, 10%);
+// }
+// .pagination button:disabled {
+//     background-color: $border-color;
+//     cursor: not-allowed;
+// }
+// .pagination span {
+//     font-family: $font-family;
+//     color: $text-color;
+// }
