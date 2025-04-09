@@ -4,3 +4,9 @@ export interface Book {
   author: string;
   year: number;
 }
+
+export interface BookFilter {
+  searchTerm: string;
+  yearFrom?: number;
+  yearTo?: number;
+}
